@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset = "utf-8">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+</body>
+
+<script>
+
+    let humanWins = 0;
+    let computerWins = 0;
+
+    for(let i = 1; i <= 5; i++){
+    let computerThrow = getComputerChoice();
+
+    let humanThrow = prompt("Please choose Rock, Paper or Scissors").toLowerCase();
+        while(humanThrow != "scissors" && humanThrow != "rock" && humanThrow != "paper"){
+            humanThrow = prompt("Please enter a valid choice: Rock, Paper or Scissors").toLowerCase();
+        } 
+
+        console.log("ROUND " + i + "\: ");
+        outcome(humanThrow, computerThrow);
+        printScore();
+    }
+
+    function printScore(){
+        console.log("Human wins: " + humanWins)
+        console.log("Computer wins: " + computerWins)
+    }
+
+    function outcome(t1, t2){
+        if(t1 === t2){return console.log("Tie")}
+        else if(t1 === "rock" && t2 === "scissors"){humanWins++; return console.log("you WON")}
+        else if(t1 === "scissors" && t2 === "paper"){humanWins++; return console.log("you WON")}
+        else if(t1 === "paper" && t2 === "rock"){humanWins++; return console.log("you WON")}
+        else {computerWins++; return console.log("you LOST")}
+
+    }   
+
+
+    function getComputerChoice(){
+        let int1 = getRandomInt(3);
+        if (int1 === 0){return "rock";}
+        else if (int1 === 1){return "paper";}
+        else if (int1 === 2){return "scissors";}
+        }
+    function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+    }
+
+</script>
