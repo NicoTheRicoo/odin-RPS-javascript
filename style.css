@@ -1,0 +1,60 @@
+body{
+    background-color:rgb(255, 255, 149);
+}
+
+h1{
+    font-family: sans-serif;
+    font-size: 50px;
+    color: white;
+    text-align:center;
+    font-weight:strong;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 2px;
+}
+
+.buttons{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+button{
+    font-family:Arial;
+    margin: 1rem;
+    color: black;
+    font-size: 35px;
+    text-align:center;
+    padding:4px 8px;
+}
+
+.rock{
+    background-color: rgb(230, 91, 91);
+}
+
+.paper{
+    background-color: rgb(91, 139, 230);
+}
+
+.scissors{
+    background-color: rgb(91, 230, 137);
+}
+
+.scoreboard{
+    display:flex;
+    flex-direction:column;
+    color: black;
+    font-size: 30px;
+    padding:5px;
+}
+
+.wins,.losses,.ties{
+    margin:10px;
+}
+
+.wins{
+    font-weight: 900;
+}
+
+.reset-button{
+    font-size: 10px;
+}

@@ -3,41 +3,81 @@
 
 <head>
     <meta charset = "utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <h1>Rock Paper Scissors</h1>
+
+    <div class = "buttons">
+        <button class = "rock">rock</button>
+        <button class = "paper">paper</button>
+        <button class = "scissors">scissors</button>
+    </div>
+
+    <div class = "scoreboard">
+        <div class = "wins">Wins: <span class = "winNum">0</span></div>
+        <div class = "losses">Losses: <span class = "loseNum">0</span></div>
+        <div class = "ties">Ties: <span class = "tieNum">0</span></div>
+    </div>
+
+    <div class = "reset">
+        <button class = "reset-button">Reset</button>
+    </div>
 </body>
 
 <script>
 
     let humanWins = 0;
     let computerWins = 0;
+    let ties = 0;
+    let humanThrow = " "
 
-    for(let i = 1; i <= 5; i++){
-    let computerThrow = getComputerChoice();
-
-    let humanThrow = prompt("Please choose Rock, Paper or Scissors").toLowerCase();
-        while(humanThrow != "scissors" && humanThrow != "rock" && humanThrow != "paper"){
-            humanThrow = prompt("Please enter a valid choice: Rock, Paper or Scissors").toLowerCase();
-        } 
-
-        console.log("ROUND " + i + "\: ");
+    if(getHumanChoice()){
+        let computerThrow = getComputerChoice();
+        console.log(humanThrow);
+        console.log(computerThrow);
         outcome(humanThrow, computerThrow);
         printScore();
     }
 
+
+    function getHumanChoice(){
+    const btn = document.querySelector(".rock")
+    btn.addEventListener("click", () => {
+    humanThrow = btn.textContent;
+    return true;
+    }); 
+    const btn2 = document.querySelector(".paper")
+    btn2.addEventListener("click", () => {
+    humanThrow = btn2.textContent;
+    return true;
+    }); 
+    const btn3 = document.querySelector(".scissors")
+    btn3.addEventListener("click", () => {
+    humanThrow = btn3.textContent;
+    return true;
+    });     
+    }
+
     function printScore(){
-        console.log("Human wins: " + humanWins)
-        console.log("Computer wins: " + computerWins)
+        let value = document.querySelector(".winNum");
+        value.textContent = humanWins;
+        let value2 = document.querySelector(".loseNum");
+        value.textContent = computerWins; 
+        let value3 = document.querySelector(".tieNum");
+        value.textContent = ties;
     }
 
     function outcome(t1, t2){
-        if(t1 === t2){return console.log("Tie")}
-        else if(t1 === "rock" && t2 === "scissors"){humanWins++; return console.log("you WON")}
-        else if(t1 === "scissors" && t2 === "paper"){humanWins++; return console.log("you WON")}
-        else if(t1 === "paper" && t2 === "rock"){humanWins++; return console.log("you WON")}
-        else {computerWins++; return console.log("you LOST")}
+        if(t1 === t2){ties++; return;}
+        else if(t1 === "rock" && t2 === "scissors"){humanWins++; return;}
+        else if(t1 === "scissors" && t2 === "paper"){humanWins++; return;}
+        else if(t1 === "paper" && t2 === "rock"){humanWins++; return;}
+        else {computerWins++; return;}
 
     }   
 
@@ -49,7 +89,7 @@
         else if (int1 === 2){return "scissors";}
         }
     function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+        return Math.floor(Math.random() * max);
     }
 
 </script>
