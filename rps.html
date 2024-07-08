@@ -35,52 +35,69 @@
     let computerWins = 0;
     let ties = 0;
     let humanThrow = " "
+    const value = document.querySelector(".winNum");
+    const value2 = document.querySelector(".loseNum");
+    const value3 = document.querySelector(".tieNum");
 
-    if(getHumanChoice()){
-        let computerThrow = getComputerChoice();
-        console.log(humanThrow);
-        console.log(computerThrow);
-        outcome(humanThrow, computerThrow);
+
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            humanThrow = button.innerHTML;
+            if(humanThrow === "Reset"){
+                reset();
+            }
+            else{
+                play();
+            }
+        });
+    });
+
+    function reset(){
+        humanWins = 0;
+        computerWins = 0;
+        ties = 0;
         printScore();
     }
 
-
-    function getHumanChoice(){
-    const btn = document.querySelector(".rock")
-    btn.addEventListener("click", () => {
-    humanThrow = btn.textContent;
-    return true;
-    }); 
-    const btn2 = document.querySelector(".paper")
-    btn2.addEventListener("click", () => {
-    humanThrow = btn2.textContent;
-    return true;
-    }); 
-    const btn3 = document.querySelector(".scissors")
-    btn3.addEventListener("click", () => {
-    humanThrow = btn3.textContent;
-    return true;
-    });     
+    function play(){
+        let computerThrow = getComputerChoice();
+        outcome(humanThrow, computerThrow);
+        console.log(humanWins)
+        console.log(computerWins)
+        console.log(ties)
+        printScore();
     }
 
     function printScore(){
-        let value = document.querySelector(".winNum");
-        value.textContent = humanWins;
-        let value2 = document.querySelector(".loseNum");
-        value.textContent = computerWins; 
-        let value3 = document.querySelector(".tieNum");
-        value.textContent = ties;
+       
+    
+        if(humanWins === 5){
+            alert("YOU WIN! :)");
+            reset();
+        }else if(computerWins === 5){
+            alert("YOU LOSE :(");
+            reset();
+        }else if(ties === 5){
+            alert("DRAW");
+            reset();
+        }
     }
 
     function outcome(t1, t2){
-        if(t1 === t2){ties++; return;}
-        else if(t1 === "rock" && t2 === "scissors"){humanWins++; return;}
-        else if(t1 === "scissors" && t2 === "paper"){humanWins++; return;}
-        else if(t1 === "paper" && t2 === "rock"){humanWins++; return;}
-        else {computerWins++; return;}
+        if(t1 === t2){ties += 1; return;}
+        else if(t1 === "rock" && t2 === "scissors"){humanWins+=1;}
+        else if(t1 === "scissors" && t2 === "paper"){humanWins+=1;}
+        else if(t1 === "paper" && t2 === "rock"){humanWins+=1;}
+        else {computerWins+=1;}
+
+        value.textContent = humanWins;
+        value2.textContent = computerWins; 
+        value3.textContent = ties;
+
+        return;
 
     }   
-
 
     function getComputerChoice(){
         let int1 = getRandomInt(3);
